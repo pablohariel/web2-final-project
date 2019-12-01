@@ -1,12 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-const signup_controller = require('../controllers/signup_controller');
-const login_controller = require('../controllers/login_controller');
 const user_controller = require('../controllers/user_controller');
+const pages_controller = require('../controllers/pages_controller');
 
-router.post('/signup', signup_controller.Signup);
-router.post('/login', login_controller.Login);
+router.get('/signup', pages_controller.Render_signup);
+router.get('/login', pages_controller.Render_login);
+router.get('/home', pages_controller.Render_home);
+router.get('/profile/:id', pages_controller.Render_profile);
+
+router.get('/signout', user_controller.Signout);
+router.post('/signup', user_controller.Signup);
+router.post('/login', user_controller.Login);
 router.put('/user/:id', user_controller.Update);
 router.delete('/user/:id', user_controller.Delete);
 
