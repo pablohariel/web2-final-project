@@ -55,6 +55,5 @@ exports.Render_profile = async (req, res) => {
     } else {
         res.redirect('/login');
     }
-    
 
 }

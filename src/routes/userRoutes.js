@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const user_controller = require('../controllers/user_controller');
-const pages_controller = require('../controllers/pages_controller');
+const user_controller = require('../controllers/userController');
+const pages_controller = require('../controllers/pagesController');
 
 router.get('/signup', pages_controller.Render_signup);
 router.get('/login', pages_controller.Render_login);

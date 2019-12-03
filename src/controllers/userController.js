@@ -38,7 +38,6 @@ exports.Login = async (req, res) => {
                 
                 req.session.user = user[0];
                 req.session.isLogged = true;
-                res.statusCode = 200;
 
                 if(user[0].isAdmin) {
                     req.session.isAdmin = true;
@@ -50,19 +49,16 @@ exports.Login = async (req, res) => {
             } else {
 
                 let message = 'Email and password dont match';
-                res.statusCode = 400;
                 res.send(message);
             }
         } else {
 
             let message = 'Account doesnt exist';
-            res.statusCode = 400;
             res.send(message);
         }
 
     }).catch(err => {
         let message = 'Something going wrong, try again!';
-        res.statusCode = 400;
         res.send(message);
     });
 

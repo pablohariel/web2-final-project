@@ -17,13 +17,13 @@ app.use(method_override('_method'));
 app.use(body_parser.urlencoded({ extended: false }));
 app.use(body_parser.json());
 
-const user_routes = require('./src/routes/user_routes');
+const user_routes = require('./src/routes/userRoutes');
 app.use(user_routes);
 
 app.use((req, res) => {
 
     res.redirect('/login');
 
-})
+});
 
 app.listen(3000);
