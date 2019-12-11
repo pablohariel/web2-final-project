@@ -1,0 +1,11 @@
+- uma pagina de usuario, com os seguintes links
+* filmes vistos;
+* filmes que quer ver;
+
+- dar a opção de seguir os outros usuarios;
+- barra de busca para filmes e usuarios;
+- a pagina inicial ser um feed, com os novos filmes adicionados dos usuarios que voce segue;
+- usar api do imdb para preencher os filmes;
+
+SE DER TEMPO: 
+- 

@@ -1,0 +1,20 @@
+<%- include('partials/head') %> 
+<%- include('partials/header') %>
+
+    <% if(users) { %>
+
+        <% users.forEach(result => { %>
+
+            <img src="/<%= result.profile_image %>" width="20px" heigh="20px">
+            <p><%= result.username %></p>
+            <a href="/user/<%= result._id %>">Ver perfil</a> <br>
+        
+        <% }) %>
+            
+    <% } else { %>
+
+        <p> Nenhum usuário encontrado <p>
+            
+    <% } %>
+
+<%- include('partials/footer') %>

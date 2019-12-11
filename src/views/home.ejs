@@ -1,6 +1,40 @@
-<%- include ('partials/head') %>
-<%- include ('partials/header') %>
+<%- include('partials/head') %>
+<%- include('partials/header') %>
 
-    <h1>Hi <%=user.username%></h1>
-    
-<%- include ('partials/footer') %>
+    <main>
+        <h2>Filmes</h2>
+
+        <% if(movies.length > 0) { %>
+
+        <div class="grid">
+
+            <% for (movie of movies) { %>
+
+            <article class="card product">
+                <header class="card-header">
+                    <h1 class="product-title"><%= movie.title %></h1>
+                </header>
+                <div class="card-image">
+                    <img src="<%= movie.img %>">
+                </div>
+                <div class="card-content">
+                    <h2 class="product-price"><%= movie.date %></h2>
+                </div>
+                <div class="card-actions">
+                    <a href="/details/<%=movie.id%>" class="btn">Detalhar</a>
+                    <a href="/" class="btn">Adicionar</a>
+                </div>
+            </article>
+            
+            <% } %>       
+
+        </div>
+        
+        <% } else { %>
+            <br>
+            <h2>Nenhum filme cadastrado</h2>
+        <% } %>
+
+    </main>
+
+<%- include('partials/footer') %>

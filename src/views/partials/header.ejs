@@ -1,5 +1,38 @@
-<header>
-    <a href="/profile/<%=user._id%>">Profile</a>
-    <a href="/home">Home</a>
-    <a href="/signout">Sign Out</a>
+<header class="main-header">
+
+  <nav class="main-header-nav">
+    
+    <!-- itens da esquerda -->
+    <ul class="main-header-list">
+
+      <li class="main-header-item"><a href="/">Início</a></li>
+      <li class="main-header-item"><a href="/">Filmes</a></li>
+
+      <% if(user) {%>
+          <li class="main-header-item"><a href="/user/<%=user._id%>">Perfil</a></li>
+          <li class="main-header-item"><a href="/users">Usuários</a></li>
+          <li class="main-header-item"><a href="/user/<%= user._id %>/following">Seguindo</a></li>
+          <li class="main-header-item"><a href="/user/<%= user._id %>/followers">Seguidores</a></li>
+      <% } %>
+    </ul>
+
+    <!-- itens da direita -->
+    <ul class="main-header-list">
+
+      <% if (!user) { %>
+
+          <li class="main-header-item"><a href="/login">login</a></li>
+
+      <% } else if (user && user.isadmin) { %>
+
+          <li class="main-header-item"><a href="/admin/addMovie">Novo filme</a></li>
+          <li class="main-header-item"><a href="/logout">Sair</a></li>
+
+      <% } else if (user && !user.isadmin) { %>
+            
+          <li class="main-header-item"><a href="/logout">Sair</a></li>
+
+      <% } %>
+    </ul>
+  </nav>
 </header>

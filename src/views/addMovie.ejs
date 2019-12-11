@@ -1,0 +1,28 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+    <main>
+    <h2>Adicionar Filme</h2>
+
+        <form class="add-product" action="/admin/addMovie" method="POST">
+            <label for="title">Titulo:</label>
+            <input name="title" id="name" /> 
+
+            <label for="date">Data de lançamento:</label>
+            <input type="number" name="date" id="price" />
+            
+            <label for="genre">Genero:</label>
+            <input name="genre" id="genre" />
+
+            <label for="description">Descricao:</label>
+            <input name="description" id="description" />
+            
+            <label for="imageUrl">URL da Imagem:</label>
+            <input name="imageUrl" id="imageUrl" />
+            
+            <button>cadastrar</button>
+        </form>
+
+    </main>
+
+<%- include('partials/footer') %>

@@ -1,24 +1,28 @@
-<%- include ('partials/head') %>
-<%- include ('partials/header') %>
+<%- include('partials/head') %> 
+<%- include('partials/header') %>
 
-    <% if(user._id == user_searched._id) { %>
+<% if(user._id == user_searched._id || user.isadmin) { %>
 
-        <form action="/user/<%= user._id %>?_method=PUT" method="POST">
-            <input type="email" name="email" value="<%= user.email %>" required>
-            <input type="text" name="username" value="<%= user.username %>" required>
-            <input type="password" name="password" value="<%= user.password %>" required>
-            <button> Edit </button>
-        </form>
-
-        <form action="/user/<%= user._id %>?_method=DELETE" method="POST">
-            <button> Delete </button>
-        </form>
-        
+    <% if(user.isadmin) { %>
+        <img src="/<%= user_searched.profile_image %>"  width="20px" heigh="20px">
+        <p> <%= user_searched.email %> </p>
+        <p> <%= user_searched.username %> </p>
+        <p> <%= user_searched.password %> </p>
+        <a href="/user/edit/<%= user_searched._id %>">Editar</a>
     <% } else { %>
+        <img src="/<%= user_searched.profile_image %>" width="20px" heigh="20px">
+        <p> <%= user.email %> </p>
+        <p> <%= user.username %> </p>
+        <p> <%= user.password %> </p>
+        <a href="/user/edit/<%= user._id %>">Editar</a>
+    <% } %>
 
-        <p><%= user_searched.email %></p>
-        <p><%= user_searched.username %></p>
+<% } else { %>
 
-    <% } %>    
+    <img src="/<%= user_searched.profile_image %>" width="20px" heigh="20px">
+    <p><%= user_searched.email %></p>
+    <p><%= user_searched.username %></p>
 
-<%- include ('partials/footer') %>
+<% } %>
+ 
+<%- include('partials/footer') %>

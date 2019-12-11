@@ -1,29 +1,37 @@
 const express = require('express');
-const app = express();
-const body_parser = require('body-parser');
+const bodyparser = require('body-parser');
 const session = require('express-session');
-const method_override = require('method-override');
+const mongoose = require('mongoose');
+const app = express();
 
 app.set('views', './src/views');
-app.set('view engine', "ejs");
+app.set('view engine', 'ejs');
 
-app.use(session({
-    secret: 'XD',
+app.use(
+  session({
+    secret: 'oh peach pit whered the hours go',
     resave: false,
     saveUninitialized: false
-}));
+  })
+);
 
-app.use(method_override('_method'));
-app.use(body_parser.urlencoded({ extended: false }));
-app.use(body_parser.json());
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.json());
 
-const user_routes = require('./src/routes/userRoutes');
-app.use(user_routes);
+app.use(express.static('public'));
+app.use('/uploads', express.static('uploads'));
+
+const adminRoutes = require('./src/routes/adminRoutes');
+app.use('/admin', adminRoutes);
+const userRoutes = require('./src/routes/userRoutes');
+app.use(userRoutes);
 
 app.use((req, res) => {
-
-    res.redirect('/login');
-
+  res.status(404);
+  res.send('PAGE NOT FOUND');
+  res.end();
 });
 
-app.listen(3000);
+mongoose.connect('mongodb://localhost:27017/web_2_project').then(result => {
+  app.listen(3000, () => console.log('Listening at 3000'));
+});
