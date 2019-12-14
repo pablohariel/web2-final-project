@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
-const userController = require('./../controllers/userController');
-const loginController = require('./../controllers/loginController');
-const signupController = require('./../controllers/signupControler');
+const userController = require('../controllers/userController');
+const loginController = require('../controllers/loginController');
+const signupController = require('../controllers/signupControler');
 
 const storageFunction = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -19,7 +19,6 @@ var upload = multer({ storage: storageFunction })
 const { isLoggedIn, isNotLoggedIn, havePermission } = require('../middleware/auth');
 
 router.get('/', userController.GetHome);
-router.get('/movie/:id', userController.MovieDetails);
 
 router.get('/login', isNotLoggedIn, loginController.GetLogin);
 router.post('/login', isNotLoggedIn, loginController.PostLogin);
@@ -35,5 +34,17 @@ router.get('/user/follow/:id', isLoggedIn, userController.GetFollowUser);
 router.get('/user/unfollow/:id', isLoggedIn, userController.GetUnfollowUser);
 router.get('/user/:id/following', isLoggedIn, userController.GetFollowing);
 router.get('/user/:id/followers', isLoggedIn, userController.GetFollowers);
+
+// mateus
+router.get('/watchMovies/:id', isLoggedIn, userController.GetWatchMovies);
+router.get('/watchedMovies/:id', isLoggedIn, userController.GetWatchedMovies);
+
+router.get('/details/:id', userController.Details);
+router.get('/watched/:id/:movieId', userController.WatchedMovie);
+router.get('/watchlist/:id/:movieId', userController.Watchlist);
+router.get('/removeWatched/:id/:movieId', userController.RemoveWatched);
+router.get('/removeWatchlist/:id/:movieId', userController.RemoveWatchlist);
+router.post('/add-comment/:id/:movieId', userController.PostAddComment);
+router.get('/remove-comment/:id/:commentId', userController.RemoveComment);
 
 module.exports = router;

@@ -8,10 +8,12 @@
             <img src="/<%= result.profile_image %>" width="20px" heigh="20px">
             <p><%= result.username %></p>
             <a href="/user/<%= result._id %>">Ver perfil</a> <br>
-            <% if(user.following.indexOf(result.id) == -1) { %>
-                <a href="/user/follow/<%= result._id %>">Seguir</a> <br>
-            <%} else { %>
-                <a href="/user/unfollow/<%= result._id %>">Deixar de seguir</a> <br>
+            <% if(user._id != result.id) { %>
+                <% if(user.following.indexOf(result.id) == -1) { %>
+                    <a href="/user/follow/<%= result._id %>">Seguir</a> <br>
+                <%} else { %>
+                    <a href="/user/unfollow/<%= result._id %>">Deixar de seguir</a> <br>
+                <% } %>
             <% } %>
             
         <% }) %>

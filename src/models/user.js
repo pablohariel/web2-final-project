@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-
+const mongoose = require('mongoose');
+const Movie = require('./Movie');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -29,15 +29,19 @@ const userSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'User' 
   }],
-  watched_movies: {
-    Type: [String]
-  },
-  liked_movies: {
-    Type: [String]
-  },
-  watch_list: {
-    Type: [String]
-  },
+  watched_list: [{
+    // Type: mongoose.Schema.Types.ObjectId,
+    // ref: 'Movie'
+  }],
+  watch_list: [{
+  //   Type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Movie',
+  }],
+
+  //temporary
+  watchedMovies: [],
+  watchlist: [],
+  
   isadmin: {
     type: Boolean,
     default: false

@@ -1,27 +1,52 @@
 <%- include('partials/head') %>
-
-   <%- include('partials/header') %>
+<%- include('partials/header') %>
 
     <main>
-
         <div class="product-box">
             <img src="<%= movie.img %>" class='product-img'>
-            
             <div class=product-description>
                 <p class="p-nome"><%= movie.title %></p>
                 <p class="p-descricao"><%= movie.description %></p>
                 <p class="p-genero"><%= movie.genre %></p>
                 <p class="p-preco"><%= movie.date %></p>
+                
+                <% if(user){ %>
+                    <% if(user.watchedMovies.indexOf(movie.id) == -1) { %>     
+                        <a href="/watched/<%=user._id%>/<%=movie._id%>" class="btn">Adicionar na lista de assistidos</a>
+                    <% } else { %>
+                        <a href="/removeWatched/<%=user._id%>/<%=movie._id%>" class="btn">Remover da lista de assistidos</a>
+                    <% } %>                  
+                    
+                    <a href="/watchlist/<%=user._id%>/<%=movie._id%>" class="btn">Watchlist</a>
+                <% } %>
 
                 <% if (user && user.isadmin) { %>
+                <a href="/admin/deleteMovie/<%=movie.id%>" class="btn">Excluir filme</a>
+                <% } %>
 
-                    <a href="/admin/excluir/<%=movie.id%>" class="btn">Excluir</a>
-
+            </div>
+        </div>
+        <div>
+            <% if(user){ %>
+            <form action="/add-comment/<%=user._id%>/<%=movie.id%>" method="POST">        
+                <label for="text">Texto:</label> <br>
+                <textarea name="text" rows="5" cols="40"></textarea> 
+                <button>Confirma</button>
+            </form>
+            <% } %>
+            <div>
+                <% if(comments){ %>
+                    <% for(comment of comments){ %>
+                        <p><%= comment.text %> - autor - <%= comment.authorId.username %></p>
+                        <% if(user){ %>
+                            <% if(user._id == comment.authorId._id || user.isadmin){ %>
+                                <a href="/remove-comment/<%=movie._id%>/<%=comment._id%>"><p>Excluir</p></a>
+                            <% } %>
+                        <% } %>
+                    <% } %>
                 <% } %>
             </div>
-
         </div>
- 
     </main>
 
 <%- include('partials/footer') %>

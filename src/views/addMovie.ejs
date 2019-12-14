@@ -1,9 +1,15 @@
+
 <%- include('partials/head') %>
-<%- include('partials/header') %>
+
+</head>
+
+<body>
+
+    
+    <%- include('partials/header') %>
 
     <main>
     <h2>Adicionar Filme</h2>
-
         <form class="add-product" action="/admin/addMovie" method="POST">
             <label for="title">Titulo:</label>
             <input name="title" id="name" /> 
@@ -20,7 +26,9 @@
             <label for="imageUrl">URL da Imagem:</label>
             <input name="imageUrl" id="imageUrl" />
             
+            
             <button>cadastrar</button>
+            
         </form>
 
     </main>

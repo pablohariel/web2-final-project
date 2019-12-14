@@ -6,7 +6,6 @@
     <ul class="main-header-list">
 
       <li class="main-header-item"><a href="/">Início</a></li>
-      <li class="main-header-item"><a href="/">Filmes</a></li>
 
       <% if(user) {%>
           <li class="main-header-item"><a href="/user/<%=user._id%>">Perfil</a></li>
@@ -25,11 +24,16 @@
 
       <% } else if (user && user.isadmin) { %>
 
-          <li class="main-header-item"><a href="/admin/addMovie">Novo filme</a></li>
+          <li class="main-header-item"><a href="/watchedMovies/<%= user._id %>">Lista de assistidos</a></li>
+          <li class="main-header-item"><a href="/watchMovies/<%= user._id %>">Lista para assistir</a></li>
+          <li class="main-header-item"><a href="/admin/addLots">add filme aleatório</a></li>
+          <li class="main-header-item"><a href="/admin/addMovie">add filme</a></li>
           <li class="main-header-item"><a href="/logout">Sair</a></li>
 
       <% } else if (user && !user.isadmin) { %>
-            
+
+          <li class="main-header-item"><a href="/watchedMovies/<%= user._id %>">Lista de assistidos</a></li>
+          <li class="main-header-item"><a href="/watchMovies/<%= user._id %>">Lista para assistir</a></li>
           <li class="main-header-item"><a href="/logout">Sair</a></li>
 
       <% } %>
