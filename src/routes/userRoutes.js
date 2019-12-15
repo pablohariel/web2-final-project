@@ -25,15 +25,18 @@ router.post('/login', isNotLoggedIn, loginController.PostLogin);
 router.get('/logout', isLoggedIn, loginController.Logout);
 router.get('/signup', isNotLoggedIn, signupController.GetSignup);
 router.post('/signup', isNotLoggedIn, signupController.PostSignup);
-router.get('/user/:id', isLoggedIn, userController.UserDetails);
+router.get('/user/:id', userController.UserDetails);
 router.get('/user/edit/:id', isLoggedIn, havePermission, userController.GetEditUser);
 router.post('/user/edit/:id', isLoggedIn, havePermission, upload.single('image'), userController.PostEditUser);
 router.get('/user/delete/:id', isLoggedIn, havePermission, userController.GetDeleteUser);
-router.get('/users', isLoggedIn, userController.GetUsers);
+router.get('/users', userController.GetUsers);
 router.get('/user/follow/:id', isLoggedIn, userController.GetFollowUser);
 router.get('/user/unfollow/:id', isLoggedIn, userController.GetUnfollowUser);
 router.get('/user/:id/following', isLoggedIn, userController.GetFollowing);
 router.get('/user/:id/followers', isLoggedIn, userController.GetFollowers);
+
+router.get('/search', userController.GetSearched);
+router.post('/search', userController.PostSearch);
 
 // mateus
 router.get('/watchMovies/:id', isLoggedIn, userController.GetWatchMovies);

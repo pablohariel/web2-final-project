@@ -1,48 +1,25 @@
 <%- include('partials/head') %>
-
-</head>
-
-<body>
-
-   <%- include('partials/header') %>
+<%- include('partials/header') %>
 
     <main>
-        <h2>Filmes</h2>
 
         <% if(movies.length > 0) { %>
 
+        <p> TODOS FILMES </p>
         <div class="grid">
 
             <% for (movie of movies) { %>
-
-            <article class="card product">
-                <header class="card-header">
-                    <a href="/details/<%=movie.id%>"><h1 class="product-title"><%= movie.title %></h1></a>
-                </header>
-                <div class="card-image">
-                    <img src="<%= movie.img %>">
-                </div>
-                <div class="card-content">
-                    <h2 class="product-price"><%= movie.date %></h2>
-                </div>
-                <div class="card-actions">
-                    <% if(user){ %>
-                        
-                        <% if(user.watchedMovies.indexOf(movie.id) == -1) { %>
-                            <a href="/watched/<%= user._id %>/<%= movie._id %>" class="btn">Visto</a>
-                        <%} else { %>
-                            <a href="/removeWatched/<%= user._id %>/<%= movie._id %>" class="btn">Remover</a>
-                        <% } %>
-                        
-                        <% if(user.watchlist.indexOf(movie.id) == -1) { %>
-                            <a href="/watchlist/<%= user._id %>/<%= movie._id %>" class="btn">Watchlist</a>
-                        <%} else { %>
-                            <a href="/removeWatchlist/<%= user._id %>/<%= movie._id %>" class="btn">Remover</a>
-                        <% } %>
-                        
-                    <% } %>
-                </div>
-            </article>
+                <a href="/details/<%=movie.id%>" class="card product">
+                    <!-- <header class="card-header">
+                        <a href="/details/<%=movie.id%>"><h1 class="product-title"><%= movie.title %></h1></a>
+                    </header> -->
+                    <div class="card-image">
+                        <img src="<%= movie.img %>">
+                    </div>
+                    <!-- <div class="card-content">
+                        <h2 class="product-price"><%= movie.date %></h2>
+                    </div> -->
+                </a>
             <% } %>       
 
         </div>

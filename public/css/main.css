@@ -10,13 +10,15 @@ html {
     font-size: 16px;
     font-family: sans-serif;
     height: 100%;
+    text-align: center;
     
 }
 
 body {
     position: relative;
-    background-image: url("https://www.wallpaperflare.com/static/829/709/248/digital-art-circuits-digital-art-wallpaper.jpg");
+    /* background-image: url("https://www.wallpaperflare.com/static/829/709/248/digital-art-circuits-digital-art-wallpaper.jpg"); */
     min-height: 100%;
+    text-align: center;
 }
 
 h2{
@@ -26,70 +28,42 @@ h2{
 
 /* CABEÇALHO ======================== */
 
-.main-header {
-    width: 100%;
-    height: 6rem;
-    background-color: #238c91;
-    font-size:22px;
-    display: flex;
-    align-items: center;
-}
-
-.main-header-nav {
-    height: 100%; /* em relação ao meu pai */
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.main-header-list {
-    list-style: none;
-    display: flex;
-}
-
-.main-header-item {
-    margin: 0 1rem;
-}
-
-.main-header-item a {
-    font: inherit;
-    background: transparent;
-    border: none;
-    text-decoration: none;
-    color: white;
-    cursor: pointer;
-}
-
-.main-header-item a:hover,
-.main-header-item a:active {
-    color: #4f5363;
-}
-
 /* FIM CABEÇALHO ======================== */
 
 /* INICIO DO GRID =================== */
 
 main {
-    width: 68%;
+    width: 60%;
     background-color: white;
     padding: 1rem;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
     padding: 1rem;
-    
+    text-align: left;
+    font-size:0.8rem;
+    font-weight: bold;
+    font-style: oblique;
 }
 
 .grid {
+    width: 100%;
+    border-top: 0.02rem solid black;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .card {
-    margin: 2rem;
+    margin: 1rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    width: 220px;
+    width: 10rem;
+    border-radius: 0.9rem;
+}
+
+.card :hover {
+    opacity: 0.8;
+    cursor: pointer;
 }
 
 .card-header,
@@ -100,13 +74,15 @@ main {
 
 .card-image {
     width: 100%;
-    height: 10rem;
+    height: 100%;
     text-align: center;
+    
 }
 
 .card-image img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.7rem;
 }
 
 .card-actions {
@@ -117,6 +93,8 @@ main {
 .card-actions a {
     margin: 0 0.25rem;
 }
+
+
 
 .btn {
 
@@ -230,7 +208,7 @@ footer {
     position: absolute;
     width: 100%;
     height: 5rem;
-    background-color: #238c91;
+    background-color: #fff;
     margin-bottom: -8rem;
     right: 0;
     bottom: 0;

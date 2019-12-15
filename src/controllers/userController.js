@@ -172,6 +172,53 @@ exports.GetUsers = async (req, res) => {
     }    
 }
 
+exports.GetSearched = async (req, res) => {
+    if(req.query.search) {
+        await User.find({ username: req.query.search}).then(result => {
+          if(result[0]) {
+            res.render('search', {
+              pageTitle: 'Search',
+              user: req.session.user,
+              users: result,
+              movies: null,
+              searched: req.query.search,
+            })
+            } else {
+            Movie.find({ title: req.query.search}).then(result => {
+                if(result[0]) {
+                  res.render('search', {
+                    pageTitle: 'Search',
+                    user: req.session.user,
+                    movies: result,
+                    users: null,
+                    searched: req.query.search,
+                  })
+                } else {
+                    res.render('search', {
+                        pageTitle: 'Search',
+                        user: req.session.user,
+                        users: null,
+                        movies: null,
+                        searched: req.query.search,
+                    })
+                }
+            }).catch(err => {
+                console.log(err);
+                res.redirect('/users');
+              })
+            }
+        }).catch(err => {
+          console.log(err);
+          res.redirect('/users');
+        })
+    }  
+}
+
+exports.PostSearch = async (req, res) => {
+    let search = req.body.search;
+    res.redirect('/search?search=' + search);
+}
+
 exports.GetFollowUser = async (req, res) => {
     let user_following = await User.findById(req.session.user._id).then().catch(err => console.log(err));
     let user_followed = await User.findById(req.params.id).then().catch(err => console.log(err));
@@ -192,6 +239,8 @@ exports.GetFollowUser = async (req, res) => {
         res.send('Voce ja segue esse usuário');
     }
 }
+
+
 
 exports.GetUnfollowUser = async (req, res) => {
     let user_unfollowing = await User.findById(req.session.user._id).then().catch(err => console.log(err));
@@ -328,7 +377,7 @@ exports.WatchedMovie = (req, res) => {
                 user.save()
                 .then(result => {
                     req.session.user = result,
-                    res.redirect('/');
+                    res.redirect('/details/' + req.params.movieId);
                 })
                 
             })
@@ -350,7 +399,7 @@ exports.RemoveWatched = (req, res) => {
                 user.save()
                 .then(result => {
                     req.session.user = result,
-                    res.redirect('/');
+                    res.redirect('/watchedMovies/' + req.params.id);
                 })
             }
         }
@@ -368,7 +417,7 @@ exports.Watchlist = (req, res) => {
             user.save()
             .then(result => {
                 req.session.user = result,
-                res.redirect('/');
+                res.redirect('/details/' + req.params.movieId);
             })
         })
         .catch(erro => {
@@ -386,7 +435,7 @@ exports.RemoveWatchlist = (req, res) => {
                 user.save()
                 .then(result => {
                     req.session.user = result,
-                    res.redirect('/');
+                    res.redirect('/watchMovies/' + req.params.id);
                 })
             }
         }

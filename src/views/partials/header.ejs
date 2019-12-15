@@ -1,42 +1,57 @@
+<head>
+  <link rel="stylesheet" href="/css/header.css" />
+</head>
 <header class="main-header">
 
   <nav class="main-header-nav">
     
     <!-- itens da esquerda -->
-    <ul class="main-header-list">
+    <ul class="main-header-list main-header-list-left">
 
-      <li class="main-header-item"><a href="/">Início</a></li>
+      <a href="/"><li class="main-header-item">INÍCIO</li></a>
 
       <% if(user) {%>
-          <li class="main-header-item"><a href="/user/<%=user._id%>">Perfil</a></li>
-          <li class="main-header-item"><a href="/users">Usuários</a></li>
-          <li class="main-header-item"><a href="/user/<%= user._id %>/following">Seguindo</a></li>
-          <li class="main-header-item"><a href="/user/<%= user._id %>/followers">Seguidores</a></li>
+          <a href="/user/<%=user._id%>"><li class="main-header-item">PERFIL</li></a>
+          <a href="/users"><li class="main-header-item">USUÁRIO</li></a>
+          <a href="/user/<%= user._id %>/following"><li class="main-header-item">SEGUINDO</li></a>
+          <a href="/user/<%= user._id %>/followers"><li class="main-header-item">SEGUIDORES</li></a>
       <% } %>
     </ul>
 
     <!-- itens da direita -->
-    <ul class="main-header-list">
+    <ul class="main-header-list-right">
+   
+    <ul class="main-header-list ">
 
       <% if (!user) { %>
 
-          <li class="main-header-item"><a href="/login">login</a></li>
+          <a href="/login"><li class="main-header-item">SING IN</li></a>
+          <a href="/signup"><li class="main-header-item">CREATE ACCOUNT</li></a>
+          <a href="/users"><li class="main-header-item">PEOPLE</li></a>
+          
 
       <% } else if (user && user.isadmin) { %>
 
-          <li class="main-header-item"><a href="/watchedMovies/<%= user._id %>">Lista de assistidos</a></li>
-          <li class="main-header-item"><a href="/watchMovies/<%= user._id %>">Lista para assistir</a></li>
-          <li class="main-header-item"><a href="/admin/addLots">add filme aleatório</a></li>
-          <li class="main-header-item"><a href="/admin/addMovie">add filme</a></li>
-          <li class="main-header-item"><a href="/logout">Sair</a></li>
+          <a href="/watchedMovies/<%= user._id %>"><li class="main-header-item">LISTA DE ASSISTIDOS</li></a>
+          <a href="/watchMovies/<%= user._id %>"><li class="main-header-item">LISTA PARA ASSISTIR</li></a>
+          <a href="/admin/addLots"><li class="main-header-item">ADD FILME ALEATÓRIO</li></a>
+          <a href="/admin/addMovie"><li class="main-header-item">ADD FILME</li></a>
+          <a href="/logout"><li class="main-header-item">SAIR</li></a>
 
       <% } else if (user && !user.isadmin) { %>
 
-          <li class="main-header-item"><a href="/watchedMovies/<%= user._id %>">Lista de assistidos</a></li>
-          <li class="main-header-item"><a href="/watchMovies/<%= user._id %>">Lista para assistir</a></li>
-          <li class="main-header-item"><a href="/logout">Sair</a></li>
+          <a href="/watchedMovies/<%= user._id %>"><li class="main-header-item">LISTA DE ASSISTIDOS</li></a>
+          <a href="/watchMovies/<%= user._id %>"><li class="main-header-item">LISTA PARA ASSISTIR</li></a>
+          <a href="/logout"><li class="main-header-item">SAIR</li></a>
 
       <% } %>
     </ul>
+    <li class="main-header-item-search">
+      <form action="/search" method="POST">
+        <input name="search" id="search" class="search-input" placeholder="">
+        <input type="image" name="submit" class="search-img" src="/images/lupa.png" alt="Submit">
+      </form>
+    </li>
+  </ul>
   </nav>
 </header>

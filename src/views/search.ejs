@@ -1,0 +1,75 @@
+<%- include('partials/head') %> 
+<%- include('partials/header') %>
+
+<% if(movies || users) { %>
+
+    <p> Exibindo resultados para <%= searched %> <p> <br>
+
+    <% if(movies) { %>
+
+        <div class="grid">
+
+            <% for (movie of movies) { %>
+                <article class="card product">
+                    <header class="card-header">
+                        <a href="/details/<%=movie.id%>"><h1 class="product-title"><%= movie.title %></h1></a>
+                    </header>
+                    <div class="card-image">
+                        <img src="<%= movie.img %>">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="product-price"><%= movie.date %></h2>
+                    </div>
+                    <div class="card-actions">
+                        <% if(user){ %>
+                            
+                            <% if(user.watchedMovies.indexOf(movie.id) == -1) { %>
+                                <a href="/watched/<%= user._id %>/<%= movie._id %>" class="btn">Visto</a>
+                            <%} else { %>
+                                <a href="/removeWatched/<%= user._id %>/<%= movie._id %>" class="btn">Remover</a>
+                            <% } %>
+                            
+                            <% if(user.watchlist.indexOf(movie.id) == -1) { %>
+                                <a href="/watchlist/<%= user._id %>/<%= movie._id %>" class="btn">Watchlist</a>
+                            <%} else { %>
+                                <a href="/removeWatchlist/<%= user._id %>/<%= movie._id %>" class="btn">Remover</a>
+                            <% } %>
+                            
+                        <% } %>
+                    </div>
+                </article>
+            
+            <% } %>   
+
+        </div>
+
+    <% } %>
+
+    <% if(users) { %>
+
+        <% users.forEach(result => { %>
+            
+            <img src="/<%= result.profile_image %>" width="20px" heigh="20px">
+            <p><%= result.username %></p>
+            <a href="/user/<%= result._id %>">Ver perfil</a> <br>
+            <% if(user) { %>
+                <% if(user._id != result.id) { %>
+                    <% if(user.following.indexOf(result.id) == -1) { %>
+                        <a href="/user/follow/<%= result._id %>">Seguir</a> <br>
+                    <%} else { %>
+                        <a href="/user/unfollow/<%= result._id %>">Deixar de seguir</a> <br>
+                    <% } %>
+                <% } %>
+            <% } %>
+            
+            
+        <% }) %>
+                
+    <% } %>
+<% } else { %>
+
+    <p>Nenhum resultado encontrado para <%= searched %> 
+
+<% } %>
+
+<%- include('partials/footer') %>            

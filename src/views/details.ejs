@@ -14,10 +14,14 @@
                     <% if(user.watchedMovies.indexOf(movie.id) == -1) { %>     
                         <a href="/watched/<%=user._id%>/<%=movie._id%>" class="btn">Adicionar na lista de assistidos</a>
                     <% } else { %>
-                        <a href="/removeWatched/<%=user._id%>/<%=movie._id%>" class="btn">Remover da lista de assistidos</a>
+                        <p> Filme já adicionado na lista de assitidos <p>
                     <% } %>                  
                     
-                    <a href="/watchlist/<%=user._id%>/<%=movie._id%>" class="btn">Watchlist</a>
+                    <% if(user.watchlist.indexOf(movie.id) == -1) { %>     
+                        <a href="/watchlist/<%=user._id%>/<%=movie._id%>" class="btn">Adicionar na lista de favoritos</a>
+                    <% } else { %>
+                        <p> Filme já adicionado na lista de favoritos <p>
+                    <% } %>    
                 <% } %>
 
                 <% if (user && user.isadmin) { %>
