@@ -1,2 +1,0 @@
-- admin conseguir apagar comentarios  
-- não poder seguir voce mesmo 

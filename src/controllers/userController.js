@@ -17,7 +17,7 @@ exports.Details = (req, res) => {
     Movie.findById(req.params.id)
     .then(movie => {
         Comment.find({movieId: movie._id})
-        .populate({path: 'authorId', model: User, select:'name'})
+        .populate({path: 'authorId', model: User, select:'username'})
         .then(comments => {
             res.render('details',
         {
@@ -101,12 +101,14 @@ exports.GetDeleteUser = async (req, res) => {
 
 exports.PostEditUser = async (req, res) => {
     let user;
-    if(req.file) {
+    console.log(req.files[0].path)
+    if(req.files) {
         user = {
             email: req.body.email,
             username: req.body.username,
             password: req.body.password,
-            profile_image: req.file.path,
+            profile_image: req.files[0].path,
+            images: []
         };
     } else {
         user = {
@@ -115,6 +117,11 @@ exports.PostEditUser = async (req, res) => {
             password: req.body.password,
         };
     }
+
+    await req.files.forEach(file => {
+        user.images.push(file.path);
+    });
+
     await User.findByIdAndUpdate(req.params.id, user, { new: true })
     .populate(['following', 'followers'])
     .then(result => {

@@ -22,6 +22,7 @@ const userSchema = new Schema({
     type: String,
     default: '/images/perfil-default.png'
   },
+  images: [],
   following: [{
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'User' 

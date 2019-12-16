@@ -27,7 +27,7 @@ router.get('/signup', isNotLoggedIn, signupController.GetSignup);
 router.post('/signup', isNotLoggedIn, signupController.PostSignup);
 router.get('/user/:id', userController.UserDetails);
 router.get('/user/edit/:id', isLoggedIn, havePermission, userController.GetEditUser);
-router.post('/user/edit/:id', isLoggedIn, havePermission, upload.single('image'), userController.PostEditUser);
+router.post('/user/edit/:id', isLoggedIn, havePermission, upload.array('images', 5), userController.PostEditUser);
 router.get('/user/delete/:id', isLoggedIn, havePermission, userController.GetDeleteUser);
 router.get('/users', userController.GetUsers);
 router.get('/user/follow/:id', isLoggedIn, userController.GetFollowUser);
