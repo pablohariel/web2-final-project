@@ -34,11 +34,11 @@ router.get('/user/follow/:id', isLoggedIn, userController.GetFollowUser);
 router.get('/user/unfollow/:id', isLoggedIn, userController.GetUnfollowUser);
 router.get('/user/:id/following', userController.GetFollowing);
 router.get('/user/:id/followers', userController.GetFollowers);
+router.get('/feed', isLoggedIn, userController.GetFeed);
 
 router.get('/search', userController.GetSearched);
 router.post('/search', userController.PostSearch);
 
-// mateus
 router.get('/watchMovies/:id', isLoggedIn, userController.GetWatchMovies);
 router.get('/watchedMovies/:id', isLoggedIn, userController.GetWatchedMovies);
 

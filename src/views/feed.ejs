@@ -1,0 +1,31 @@
+<%- include('partials/head') %> 
+<%- include('partials/header') %>
+<head>
+    <link rel="stylesheet" href="/css/users.css" />
+</head>
+<main>
+    <% if(users.length > 0) { %>
+        <p class="first"> FEED </p>
+        <div class="box-users">
+        <% users.forEach(result => { %>
+            <% comments.forEach(comment => { %>
+                <% if(comment.authorId == result.id) { %>
+                    <div class="user">
+                        <img class="user-image" src="/<%= result.profile_image %>" width="20px" heigh="20px">
+                        <div class="user-infos">
+                            <a href="/user/<%= result._id %>"><%= result.username %></a> <br>
+                            <p>Comentou <%= comment.text %> no filme <a href="/details/<%= comment.movieId.id %>"><%= comment.movieId.title %></a></p>
+                        </div>
+                    </div>
+               <% } %>
+            <% }) %>
+            
+        <% }) %>
+        </div>      
+    <% } else { %>
+
+        <p> Nenhum usuário encontrado <p>
+            
+    <% } %>
+</main>
+<%- include('partials/footer') %>

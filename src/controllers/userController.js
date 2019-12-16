@@ -270,6 +270,33 @@ exports.GetUnfollowUser = async (req, res) => {
     }
 }
 
+exports.GetFeed = async (req, res) => {
+    await Comment.find().populate('movieId').then(comments => {
+        User.findById(req.session.user._id)
+        .populate(['following', 'followers'])
+        .then(result => {
+            if (result === null) {
+                let message = 'User not found!';
+                console.log(message);
+                res.redirect('/');
+            } else {
+                res.render('feed', {
+                    pageTitle: 'Usuários seguidos',
+                    user: req.session.user,
+                    users: result.following,
+                    comments: comments
+                });
+            }
+        })
+        .catch(err => {
+            console.log(err); 
+            res.redirect('/login');
+        });
+    }).catch(err => {
+        res.send('Error to get feed');
+    })
+}
+
 exports.GetFollowing = async (req, res) => {
     await User.findById(req.params.id)
     .populate(['following', 'followers'])
