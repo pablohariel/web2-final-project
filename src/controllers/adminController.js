@@ -31,7 +31,7 @@ exports.AddLots = async (req, res) => {
                 movie.save()
                 .then(result => {
                     console.log('Filme criado!');
-                    res.redirect('/admin/addMovie');
+                    res.redirect('/');
                 })
                 .catch(error => {
                     console.log(error);

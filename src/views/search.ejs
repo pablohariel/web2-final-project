@@ -3,25 +3,23 @@
 
 <% if(movies || users) { %>
 
-    <p> Exibindo resultados para <%= searched %> <p> <br>
 
     <% if(movies) { %>
-
+        <head>
+            <link rel="stylesheet" href="/css/movies.css" />
+        </head>
+        <main>
+        <p> Exibindo resultados para <%= searched %> <p> 
         <div class="grid">
 
             <% for (movie of movies) { %>
-                <article class="card product">
-                    <header class="card-header">
-                        <a href="/details/<%=movie.id%>"><h1 class="product-title"><%= movie.title %></h1></a>
-                    </header>
+                <a href="/details/<%=movie.id%>" class="card product">
                     <div class="card-image">
                         <img src="<%= movie.img %>">
                     </div>
-                    <div class="card-content">
-                        <h2 class="product-price"><%= movie.date %></h2>
-                    </div>
-                    <div class="card-actions">
-                        <% if(user){ %>
+                </a>
+                    <!-- <div class="card-actions"> -->
+                        <!-- <% if(user){ %>
                             
                             <% if(user.watchedMovies.indexOf(movie.id) == -1) { %>
                                 <a href="/watched/<%= user._id %>/<%= movie._id %>" class="btn">Visto</a>
@@ -34,37 +32,46 @@
                             <%} else { %>
                                 <a href="/removeWatchlist/<%= user._id %>/<%= movie._id %>" class="btn">Remover</a>
                             <% } %>
-                            
+                             -->
                         <% } %>
-                    </div>
-                </article>
+                    <!-- </div> -->
             
             <% } %>   
 
         </div>
-
+    </main>
     <% } %>
 
     <% if(users) { %>
-
-        <% users.forEach(result => { %>
-            
-            <img src="/<%= result.profile_image %>" width="20px" heigh="20px">
-            <p><%= result.username %></p>
-            <a href="/user/<%= result._id %>">Ver perfil</a> <br>
-            <% if(user) { %>
-                <% if(user._id != result.id) { %>
-                    <% if(user.following.indexOf(result.id) == -1) { %>
-                        <a href="/user/follow/<%= result._id %>">Seguir</a> <br>
-                    <%} else { %>
-                        <a href="/user/unfollow/<%= result._id %>">Deixar de seguir</a> <br>
-                    <% } %>
-                <% } %>
-            <% } %>
-            
-            
-        <% }) %>
+        <header>
+            <link rel="stylesheet" href="/css/users.css" />
+        </header>
+        <main>
+            <p class="first"> Exibindo resultados para <%= searched %> <p> 
+            <div class="box-users"> 
+            <% users.forEach(result => { %>
+                <div class="user">
+                <img class="user-image" src="/<%= result.profile_image %>" width="20px" heigh="20px">
+                <div class="user-infos">
+                    <a href="/user/<%= result._id   %>"><%= result.username %></a>
+                    <!-- <div class="btns">
+                        <% if(user) { %>
+                            <% if(user._id != result.id) { %>
+                                <% if(user.following.indexOf(result.id) == -1) { %>
+                                    <a class="btn" href="/user/follow/<%= result._id %>">Seguir</a> <br>
+                                <%} else { %>
+                                    <a class="btn" href="/user/unfollow/<%= result._id %>">Deixar de seguir</a> <br>
+                                <% } %>
+                            <% } %>
+                        <% } %> 
+                    </div> -->
+                </div>
+            </div>
+                </div>
                 
+            <% }) %>
+            </div>
+        </main>       
     <% } %>
 <% } else { %>
 

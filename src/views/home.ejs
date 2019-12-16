@@ -1,11 +1,13 @@
 <%- include('partials/head') %>
 <%- include('partials/header') %>
-
+<head>
+    <link rel="stylesheet" href="/css/movies.css" />
+</head>
     <main>
 
         <% if(movies.length > 0) { %>
 
-        <p> TODOS FILMES </p>
+        <p> ALL MOVIES </p>
         <div class="grid">
 
             <% for (movie of movies) { %>

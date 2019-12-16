@@ -1,24 +1,20 @@
 <%- include('partials/head') %>
 <%- include('partials/header') %>
 
+<header>
+    <link rel="stylesheet" href="/css/login.css" />
+</header>
+
    <main>
         <h2>Cadastro</h2>
-        <form action="/signup" method="POST">
-            <label for="email">Email</label>
-            <input name="email" id="email"/>
-            <br>
-            <label for="username">Nome de usuário</label>
-            <input name="username" id="username"/>
-            <br>
-            <label for="password">Senha</label>
-            <input type="password" name="password" id="password"/>
-            <br>
-            <label for="confirmPassword">Digite a senha novamente</label>
-            <input type="password" name="confirmPassword" id="confirmPassword"/>
-            <br>
-            <button>cadastrar</button>
-            <br>
+        <form class="add-product" action="/signup" method="POST">
+            <input placeholder="Email" name="email" id="email"/>
+            <input placeholder="Username" name="username" id="username"/>
+            <input placeholder="Password" type="password" name="password" id="password"/>
+            <input placeholder="Confirm Password" type="password" name="confirmPassword" id="confirmPassword"/>
+            <input class="btn" type="submit">
         </form>        
+        <a href="/login">Já sou cadastrado</a>
     </main>
     
 <%- include('partials/footer') %>

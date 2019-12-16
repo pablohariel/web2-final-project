@@ -1,20 +1,25 @@
 <%- include('partials/head') %> 
 <%- include('partials/header') %>
-
-    <% if(users) { %>
-
-        <% users.forEach(result => { %>
-
-            <img src="/<%= result.profile_image %>" width="20px" heigh="20px">
-            <p><%= result.username %></p>
-            <a href="/user/<%= result._id %>">Ver perfil</a> <br>
-        
-        <% }) %>
-            
+<head>
+    <link rel="stylesheet" href="/css/users.css" />
+</head>
+<main>
+    <% if(users.length > 0) { %>
+        <p class="first"> FOLLOWERS </p>
+        <div class="box-users">
+            <% users.forEach(result => { %>
+                <div class="user">
+                    <img class="user-image" src="/<%= result.profile_image %>" width="20px" heigh="20px">
+                    <div class="user-infos">
+                        <a href="/user/<%= result._id %>"><%= result.username %></a> 
+                    </div>
+                </div>
+            <% }) %>
+        </div>    
     <% } else { %>
 
         <p> Nenhum usuário encontrado <p>
             
     <% } %>
-
+</main>
 <%- include('partials/footer') %>

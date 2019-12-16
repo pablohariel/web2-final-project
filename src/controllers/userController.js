@@ -230,10 +230,10 @@ exports.GetFollowUser = async (req, res) => {
         await User.findByIdAndUpdate(req.params.id, user_followed);
         await User.findByIdAndUpdate(req.session.user._id, user_following, { new: true }).then(result => {
             req.session.user = result;
-            res.redirect('/users');
+            res.redirect('/user/' + req.params.id);
         }).catch(err => {
             console.log(err);
-            res.redirect('/users');
+            res.redirect('/user/' + req.params.id);
         });
     } else {
         res.send('Voce ja segue esse usuário');
@@ -253,10 +253,10 @@ exports.GetUnfollowUser = async (req, res) => {
         await User.findByIdAndUpdate(req.params.id, user_followed);
         await User.findByIdAndUpdate(req.session.user._id, user_unfollowing, { new: true }).then(result => {
             req.session.user = result;
-            res.redirect('/users');
+            res.redirect('/user/' + req.params.id);
         }).catch(err => {
             console.log(err);
-            res.redirect('/users');
+            res.redirect('/user/' + req.params.id);
         });
     } else {
         res.send('Voce não segue esse usuário');

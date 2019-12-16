@@ -1,6 +1,7 @@
 <head>
   <link rel="stylesheet" href="/css/header.css" />
 </head>
+<body>
 <header class="main-header">
 
   <nav class="main-header-nav">
@@ -8,13 +9,13 @@
     <!-- itens da esquerda -->
     <ul class="main-header-list main-header-list-left">
 
-      <a href="/"><li class="main-header-item">INÍCIO</li></a>
+      <a href="/"><li class="main-header-item">HOME</li></a>
 
       <% if(user) {%>
-          <a href="/user/<%=user._id%>"><li class="main-header-item">PERFIL</li></a>
-          <a href="/users"><li class="main-header-item">USUÁRIO</li></a>
-          <a href="/user/<%= user._id %>/following"><li class="main-header-item">SEGUINDO</li></a>
-          <a href="/user/<%= user._id %>/followers"><li class="main-header-item">SEGUIDORES</li></a>
+          <a href="/user/<%=user._id%>"><li class="main-header-item">PROFILE</li></a>
+          <a href="/users"><li class="main-header-item">USERS</li></a>
+          <a href="/user/<%= user._id %>/following"><li class="main-header-item">FOLLOWING</li></a>
+          <a href="/user/<%= user._id %>/followers"><li class="main-header-item">FOLLOWERS</li></a>
       <% } %>
     </ul>
 
@@ -27,22 +28,22 @@
 
           <a href="/login"><li class="main-header-item">SING IN</li></a>
           <a href="/signup"><li class="main-header-item">CREATE ACCOUNT</li></a>
-          <a href="/users"><li class="main-header-item">PEOPLE</li></a>
+          <a href="/users"><li class="main-header-item">USERS</li></a>
           
 
       <% } else if (user && user.isadmin) { %>
 
-          <a href="/watchedMovies/<%= user._id %>"><li class="main-header-item">LISTA DE ASSISTIDOS</li></a>
-          <a href="/watchMovies/<%= user._id %>"><li class="main-header-item">LISTA PARA ASSISTIR</li></a>
-          <a href="/admin/addLots"><li class="main-header-item">ADD FILME ALEATÓRIO</li></a>
-          <a href="/admin/addMovie"><li class="main-header-item">ADD FILME</li></a>
-          <a href="/logout"><li class="main-header-item">SAIR</li></a>
+          <a href="/watchedMovies/<%= user._id %>"><li class="main-header-item">WATCHED LIST</li></a>
+          <a href="/watchMovies/<%= user._id %>"><li class="main-header-item">WATCH LIST</li></a>
+          <a href="/admin/addLots"><li class="main-header-item">ADD RANDOM MOVIE</li></a>
+          <a href="/admin/addMovie"><li class="main-header-item">ADD MOVIE</li></a>
+          <a href="/logout"><li class="main-header-item">LOG OUT</li></a>
 
       <% } else if (user && !user.isadmin) { %>
 
-          <a href="/watchedMovies/<%= user._id %>"><li class="main-header-item">LISTA DE ASSISTIDOS</li></a>
-          <a href="/watchMovies/<%= user._id %>"><li class="main-header-item">LISTA PARA ASSISTIR</li></a>
-          <a href="/logout"><li class="main-header-item">SAIR</li></a>
+          <a href="/watchedMovies/<%= user._id %>"><li class="main-header-item">WATCHED LIST</li></a>
+          <a href="/watchMovies/<%= user._id %>"><li class="main-header-item">WATCH LIST</li></a>
+          <a href="/logout"><li class="main-header-item">LOG OUT</li></a>
 
       <% } %>
     </ul>

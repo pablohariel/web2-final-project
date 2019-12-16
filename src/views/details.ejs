@@ -1,45 +1,69 @@
 <%- include('partials/head') %>
 <%- include('partials/header') %>
+<header>
+    <link rel="stylesheet" href="/css/movie.css" />
+</header>
 
     <main>
-        <div class="product-box">
-            <img src="<%= movie.img %>" class='product-img'>
-            <div class=product-description>
-                <p class="p-nome"><%= movie.title %></p>
-                <p class="p-descricao"><%= movie.description %></p>
-                <p class="p-genero"><%= movie.genre %></p>
-                <p class="p-preco"><%= movie.date %></p>
+        <div class="movie-box">
+            <div class="image-box">
+                <img src="<%= movie.img %>"" class="movie-img">
+            </div>
+            
+            <div class="movie-details">
+                <h2 class="movie-name"><%= movie.title %></h2>
+                <div class="movie-subdetails">
+                    <p class="movie-date"><%= movie.date %></p>
+                    <p class="movie-subname">'<%= movie.title %>'</p>
+                    <p class="movie-director"> Directed by <%= movie.author %></p>
+                </div>
+                <div class="movie-descripton-genre">
+                    <p class="movie-description"><%= movie.description %></p>
+                    <div class="movie-genre-tags">
+                        <p>Genres:</p>
+                        <p class="movie-genre"><%= movie.genre %>.</p>
+                    </div>
+                </div>
+            </div>
+                
                 
                 <% if(user){ %>
-                    <% if(user.watchedMovies.indexOf(movie.id) == -1) { %>     
-                        <a href="/watched/<%=user._id%>/<%=movie._id%>" class="btn">Adicionar na lista de assistidos</a>
-                    <% } else { %>
-                        <p> Filme já adicionado na lista de assitidos <p>
-                    <% } %>                  
-                    
-                    <% if(user.watchlist.indexOf(movie.id) == -1) { %>     
-                        <a href="/watchlist/<%=user._id%>/<%=movie._id%>" class="btn">Adicionar na lista de favoritos</a>
-                    <% } else { %>
-                        <p> Filme já adicionado na lista de favoritos <p>
-                    <% } %>    
-                <% } %>
-
-                <% if (user && user.isadmin) { %>
-                <a href="/admin/deleteMovie/<%=movie.id%>" class="btn">Excluir filme</a>
-                <% } %>
-
-            </div>
+                    <div class="btns">
+                        <% if(user.watchedMovies.indexOf(movie.id) == -1) { %>     
+                            <a href="/watched/<%= user._id %>/<%= movie._id %>" class="btn">Adicionar na lista de assistidos</a>
+                        <% } else { %>
+                            <p class="btn"> Filme já adicionado na lista de assitidos <p>
+                        <% } %>                  
+                        
+                        <% if(user.watchlist.indexOf(movie.id) == -1) { %>     
+                            <a href="/watchlist/<%= user._id %>/<%= movie._id %>" class="btn">Adicionar na lista de favoritos</a>
+                        <% } else { %>
+                            <p class="btn"> Filme já adicionado na lista de favoritos <p>
+                        <% } %> 
+                        <% if (user && user.isadmin) { %>
+                            <a href="/admin/deleteMovie/<%= movie.id %>" class="btn">Excluir filme</a>
+                        <% } %>   
+                    </div>
+                <% } else { %>
+                    <div class="btns">
+                        <a class="btn" href="/login">Sign in to add to your list</a>
+                    </div>
+                <% } %>   
         </div>
-        <div>
+        <div class="comments-box">
             <% if(user){ %>
-            <form action="/add-comment/<%=user._id%>/<%=movie.id%>" method="POST">        
-                <label for="text">Texto:</label> <br>
-                <textarea name="text" rows="5" cols="40"></textarea> 
-                <button>Confirma</button>
-            </form>
+                <div class="form-comment">
+                    <form action="/add-comment/<%=user._id%>/<%=movie.id%>" method="POST">        
+                        <label for="text">Escrever comentário:</label>
+                        <textarea name="text" rows="5" cols="40"></textarea> 
+                        <button>Enviar</button>
+                    </form>
+                </div>   
             <% } %>
-            <div>
-                <% if(comments){ %>
+
+            <div class="comments">
+                <% if(comments.length > 0){ %>
+                    <p>POPULAR COMMENTS</p> <br>
                     <% for(comment of comments){ %>
                         <p><%= comment.text %> - autor - <%= comment.authorId.username %></p>
                         <% if(user){ %>
@@ -48,9 +72,12 @@
                             <% } %>
                         <% } %>
                     <% } %>
+                <% } else { %>
+                    <p>NO COMMENTS</p>
                 <% } %>
             </div>
         </div>
+    </div>
     </main>
 
 <%- include('partials/footer') %>

@@ -1,18 +1,41 @@
+/* geral */
 * {
+    margin: 0;
+    padding: 0;
     text-decoration: none;
-    color: black;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size:0.94rem;
+    letter-spacing: 0.1rem;
 }
+
+html {
+    height: 100%;
+    text-align: center;
+}
+
+body {
+    /* background-image: url("https://www.wallpaperflare.com/static/829/709/248/digital-art-circuits-digital-art-wallpaper.jpg"); */
+    max-width: 100%;
+    min-height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #14181C;
+    background-color: #1B2126;
+}
+
+/* header */
 
 .main-header {
     width: 100%;
     height: 4rem;
-    background-color: #fff;
-    font-size:0.8rem;
-    font-weight: bold;
+    background-color: #14181C;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-style: oblique;
 }
 
 .main-header :hover {
@@ -93,6 +116,7 @@
     -moz-border-radius: 4rem;
     -ms-border-radius: 4rem;
     -o-border-radius: 4rem;
+    background-color: white;
 }
 
 .main-header-item-search form{
@@ -107,4 +131,6 @@
     width: 5rem;
     height: 1rem;
     margin-left: 0.3rem;
+    background-color: #fff;
+    color: black;
 }

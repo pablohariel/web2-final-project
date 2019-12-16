@@ -1,27 +1,32 @@
 <%- include('partials/head') %> 
 <%- include('partials/header') %>
 
+<header>
+    <link rel="stylesheet" href="/css/login.css" />
+</header>
+
+<main>
 <% if(user) { %>
 
     <% if(user.isadmin) { %>
 
-        <form action="/user/edit/<%= user_searched._id %>" enctype="multipart/form-data" method="POST">
+        <form class="add-product" action="/user/edit/<%= user_searched._id %>" enctype="multipart/form-data" method="POST">
             <input type="email" name="email" value="<%= user_searched.email %>" required />
             <input type="text" name="username" value="<%= user_searched.username %>" required />
             <input type="password" name="password" value="<%= user_searched.password %>" required/>
             <input name="image" type="file" id="image"/>
-            <button>Edit</button>              
+            <input class="btn" type="submit">             
         </form>
         <a href="/user/delete/<%=user_searched._id%>">Deletar</a>
 
     <% } else { %>
 
-        <form action="/user/edit/<%= user._id %>" enctype="multipart/form-data" method="POST">
+        <form class="add-product" action="/user/edit/<%= user._id %>" enctype="multipart/form-data" method="POST">
             <input type="email" name="email" value="<%= user.email %>" required />
             <input type="text" name="username" value="<%= user.username %>" required />
             <input type="password" name="password" value="<%= user.password %>" required/>
             <input name="image" type="file"/>
-            <button>Edit</button>
+            <input class="btn" type="submit">
         </form>
         <a href="/user/delete/<%=user._id%>">Deletar</a>
 
@@ -32,5 +37,5 @@
     <p> Usuário não encontrado </p>
     
 <% } %> 
-
+</main>
 <%- include('partials/footer') %>

@@ -1,18 +1,18 @@
 <%- include('partials/head') %>
 <%- include('partials/header') %>
 
+<header>
+    <link rel="stylesheet" href="/css/login.css" />
+</header>
+
    <main>
     <h2>Login</h2>
         <form class="add-product" action="/login" method="POST">
-            <label for="email">Email:</label>
-            <input name="email" id="email" /> 
-
-            <label for="password">Senha:</label>
-            <input type="password" name="password" id="password" />
-            
-            <button>entrar</button>
+            <input class="login-input" placeholder="Email" name="email" id="email" /> 
+            <input class="login-input" placeholder="Senha" type="password" name="password" id="password" />
+            <input class="btn" type="submit">
         </form>
         <a href="/signup">Não tenho cadastro</a>
-    </main>
+    </main> 
 
 <%- include('partials/footer') %>

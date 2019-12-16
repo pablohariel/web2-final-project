@@ -32,8 +32,8 @@ router.get('/user/delete/:id', isLoggedIn, havePermission, userController.GetDel
 router.get('/users', userController.GetUsers);
 router.get('/user/follow/:id', isLoggedIn, userController.GetFollowUser);
 router.get('/user/unfollow/:id', isLoggedIn, userController.GetUnfollowUser);
-router.get('/user/:id/following', isLoggedIn, userController.GetFollowing);
-router.get('/user/:id/followers', isLoggedIn, userController.GetFollowers);
+router.get('/user/:id/following', userController.GetFollowing);
+router.get('/user/:id/followers', userController.GetFollowers);
 
 router.get('/search', userController.GetSearched);
 router.post('/search', userController.PostSearch);

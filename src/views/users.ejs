@@ -1,28 +1,36 @@
 <%- include('partials/head') %> 
 <%- include('partials/header') %>
-
-    <% if(users) { %>
-
+<head>
+    <link rel="stylesheet" href="/css/users.css" />
+</head>
+<main style="margin-top:10rem;">
+    <% if(users.length > 0) { %>
+        <p class="first">ALL USERS</a>
+        <div class="box-users">
         <% users.forEach(result => { %>
-            
-            <img src="/<%= result.profile_image %>" width="20px" heigh="20px">
-            <p><%= result.username %></p>
-            <a href="/user/<%= result._id %>">Ver perfil</a> <br>
-            <% if(user) { %>
-                <% if(user._id != result.id) { %>
-                    <% if(user.following.indexOf(result.id) == -1) { %>
-                        <a href="/user/follow/<%= result._id %>">Seguir</a> <br>
-                    <%} else { %>
-                        <a href="/user/unfollow/<%= result._id %>">Deixar de seguir</a> <br>
-                    <% } %>
-                <% } %>
-            <% } %>
-            
-            
+            <div class="user">
+                <img class="user-image" src="/<%= result.profile_image %>" width="20px" heigh="20px">
+                <div class="user-infos">
+                    <a href="/user/<%= result._id   %>"><%= result.username %></a>
+                    <!-- <div class="btns">
+                        <% if(user) { %>
+                            <% if(user._id != result.id) { %>
+                                <% if(user.following.indexOf(result.id) == -1) { %>
+                                    <a class="btn" href="/user/follow/<%= result._id %>">Seguir</a> <br>
+                                <%} else { %>
+                                    <a class="btn" href="/user/unfollow/<%= result._id %>">Deixar de seguir</a> <br>
+                                <% } %>
+                            <% } %>
+                        <% } %> 
+                    </div> -->
+                </div>
+            </div>
         <% }) %>
-            
+    </div>
     <% } else { %>
-        <p> Nenhum usuário encontrado <p>
-    <% } %>
 
+        <p> Nenhum usuário encontrado <p>
+
+    <% } %>
+</main>
 <%- include('partials/footer') %>

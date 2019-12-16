@@ -19,7 +19,8 @@ const userSchema = new Schema({
     required: true
   },
   profile_image: {
-    type: String
+    type: String,
+    default: '/images/perfil-default.png'
   },
   following: [{
     type: mongoose.Schema.Types.ObjectId, 
